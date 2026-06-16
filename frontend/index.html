@@ -1,25 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FakeNews AI</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FakeNews AI — Multi-Agent Detection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-    <div class="container">
-        <h1>📰 FakeNews AI</h1>
-        <h3>Role-Based Multi-Agent Detection System</h3>
-
-        <div class="input-section">
-            <textarea id="newsText" placeholder="Paste a news article or claim here..."></textarea>
-            <button id="analyzeBtn" onclick="analyzeNews()">Analyze News</button>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-group">
+        <div class="logo-icon">F</div>
+        <div>
+          <div class="logo-title">FakeNews AI</div>
+          <div class="logo-sub">Multi-Agent Verification Network</div>
         </div>
+      </div>
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        System Online
+      </div>
+    </div>
+  </header>
 
-        <div id="result" class="hidden"></div>
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ERROR BANNER -->
+    <div id="errorBanner" class="error-banner hidden">
+      <span>⚠</span>
+      <span id="errorMsg"></span>
+      <button onclick="clearError()">✕</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="grid">
+
+      <!-- LEFT COLUMN -->
+      <div class="col-left">
+
+        <!-- INPUT TERMINAL -->
+        <div class="card" id="inputCard">
+          <div class="card-header">
+            <span class="pulse-dot"></span>
+            <span>Analysis Terminal</span>
+          </div>
+
+          <div class="tab-row">
+            <button class="tab active" id="tabText" onclick="switchTab('text')">📄 Raw News Text</button>
+            <button class="tab" id="tabUrl" onclick="switchTab('url')">🔗 Source URL</button>
+          </div>
+
+          <textarea id="newsInput" class="input-area" placeholder="Paste a news article or claim here for multi-agent verification..."></textarea>
+          <input id="urlInput" class="input-url hidden" type="url" placeholder="https://example-news-source.com/article"/>
+
+          <!-- Sample buttons -->
+          <div class="sample-row">
+            <span class="sample-label">Try samples:</span>
+            <button class="sample-btn" onclick="loadSample('fake')">🔴 Fake Sample</button>
+            <button class="sample-btn" onclick="loadSample('real')">🟢 Real Sample</button>
+            <button class="sample-btn" onclick="loadSample('clickbait')">⚡ Clickbait Sample</button>
+          </div>
+
+          <button id="analyzeBtn" class="analyze-btn" onclick="analyze()">
+            <span id="btnText">Analyze News</span>
+            <span id="btnIcon">→</span>
+          </button>
+        </div>
+
+        <!-- VERDICT PANEL (hidden until result) -->
+        <div id="verdictPanel" class="card verdict-card hidden">
+          <div class="verdict-top">
+            <div class="verdict-icon-wrap" id="verdictIconWrap">
+              <span id="verdictIcon" class="verdict-icon">?</span>
+            </div>
+            <div class="verdict-info">
+              <div class="verdict-label">System Verdict</div>
+              <div id="verdictText" class="verdict-text">—</div>
+              <div id="verdictExplanation" class="verdict-explanation"></div>
+            </div>
+            <!-- Confidence ring -->
+            <div class="confidence-ring-wrap">
+              <svg class="ring-svg" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                <circle cx="50" cy="50" r="40" class="ring-fill" id="ringFill"
+                  stroke-dasharray="251.2"
+                  stroke-dashoffset="251.2"/>
+              </svg>
+              <div class="ring-label">
+                <span id="confidencePct">0%</span>
+                <span class="ring-sub">Confidence</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Knowledge Graph badge -->
+          <div id="kgBadge" class="kg-badge hidden">
+            <span>🗄</span>
+            <span id="kgText">Verified Against Knowledge Graph</span>
+          </div>
+        </div>
+
+        <!-- AGENT BREAKDOWN (hidden until result) -->
+        <div id="agentPanel" class="hidden">
+          <div class="section-title">Individual Agent Classifications</div>
+          <div class="agent-grid" id="agentGrid"></div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="col-right">
+
+        <!-- PIPELINE STEPPER -->
+        <div class="card">
+          <div class="card-header">
+            <span class="pulse-dot" id="pipelineDot"></span>
+            <span>Pipeline Status</span>
+          </div>
+          <div class="stepper" id="stepper">
+            <!-- Steps injected by JS -->
+          </div>
+        </div>
+
+        <!-- HISTORY PANEL -->
+        <div class="card">
+          <div class="card-header">
+            🕓 Session History
+          </div>
+          <div id="historyList" class="history-list">
+            <div class="history-empty">No analyses yet in this session.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
 </body>
-</html> 
+</html>

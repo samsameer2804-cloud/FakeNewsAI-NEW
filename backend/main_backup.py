@@ -4,11 +4,6 @@ from pydantic import BaseModel
 from typing import List, Dict
 import joblib
 import re
-import httpx
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # =========================================================
 # LOAD MODEL
@@ -20,10 +15,6 @@ vectorizer = joblib.load("vectorizer.pkl")
 # =========================================================
 # FASTAPI APP
 # =========================================================
-
-GOOGLE_FACTCHECK_API_KEY = os.getenv("GOOGLE_FACTCHECK_API_KEY")
-
-factcheck_cache = {}
 
 app = FastAPI(
     title="FakeNews AI",
@@ -257,76 +248,6 @@ async def evidence_retrieval_agent(entities):
     return evidence
 
 # =========================================================
-# INTERNET VERIFICATION AGENT
-# =========================================================
-
-async def internet_verification_agent(text: str):
-
-    print("[Internet Agent] Running...")
-
-    cache_key = text[:100]
-
-    if cache_key in factcheck_cache:
-        print("[Internet Agent] Returning cached result")
-        return factcheck_cache[cache_key]
-
-    try:
-
-        query = text[:100].replace(" ", "+")
-
-        url = (
-            f"https://factchecktools.googleapis.com/v1alpha1/claims:search"
-            f"?query={query}&key={GOOGLE_FACTCHECK_API_KEY}&languageCode=en"
-        )
-
-        async with httpx.AsyncClient() as client:
-
-            response = await client.get(url, timeout=5.0)
-            data = response.json()
-
-        claims = data.get("claims", [])
-
-        if not claims:
-
-            result = {
-                "found": False,
-                "result": "No fact-check records found online."
-            }
-
-        else:
-
-            top        = claims[0]
-            claim_text = top.get("text", "")
-            claimant   = top.get("claimant", "Unknown")
-            review     = top.get("claimReview", [{}])[0]
-            publisher  = review.get("publisher", {}).get("name", "Unknown")
-            rating     = review.get("textualRating", "Unrated")
-            review_url = review.get("url", "")
-
-            result = {
-                "found": True,
-                "claim": claim_text,
-                "claimant": claimant,
-                "publisher": publisher,
-                "rating": rating,
-                "url": review_url
-            }
-
-        factcheck_cache[cache_key] = result
-
-        return result
-
-    except Exception as e:
-
-        print("[Internet Agent] Error:", e)
-
-        return {
-            "found": False,
-            "result": f"Could not reach API: {str(e)}"
-        }
-
-
-# =========================================================
 # ML AGENT
 # =========================================================
 
@@ -430,8 +351,6 @@ async def analyze_news(input_data: NewsInput):
             text
         )
 
-        internet = await internet_verification_agent(text)
-
         consensus = await cross_verification_agent(
             linguistic,
             source_data,
@@ -509,9 +428,6 @@ async def analyze_news(input_data: NewsInput):
                 "knowledge_graph_evidence":
                     evidence,
 
-                "internet_verification":
-                    internet,
-                    
                 "ml_classifier": {
 
                     "model":
