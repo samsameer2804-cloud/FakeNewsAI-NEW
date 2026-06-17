@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRUTHLENS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- SIDEBAR SHELL -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon" style="padding: 0; overflow: hidden; background: transparent; border: none; box-shadow: none;">
+          <img src="logo.png" alt="TRUTHLENS Logo" style="width: 36px; height: 36px; object-fit: contain; border-radius: var(--radius-element);"/>
+        </div>
+        <div class="brand-text-wrapper">
+          <div class="brand-title"><span class="brand-accent">TRUTHLENS</span></div>
+          <div class="brand-version">v1.2.0 Production</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <button class="menu-item active" id="navDashboard" data-tab="dashboard">
+          <span class="menu-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="9"></rect>
+              <rect x="14" y="3" width="7" height="5"></rect>
+              <rect x="14" y="12" width="7" height="9"></rect>
+              <rect x="3" y="16" width="7" height="5"></rect>
+            </svg>
+          </span>
+          <span class="menu-text">Verification Engine</span>
+        </button>
+        <button class="menu-item" id="navTopology" data-tab="topology">
+          <span class="menu-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </span>
+          <span class="menu-text">Pipeline Topology</span>
+        </button>
+        <button class="menu-item" id="navLedger" data-tab="ledger">
+          <span class="menu-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </span>
+          <span class="menu-text">Audit Ledger</span>
+        </button>
+        <button class="menu-item" id="navAnalytics" data-tab="analytics">
+          <span class="menu-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </span>
+          <span class="menu-text">System Analytics</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sys-status">
+          <div class="status-indicator">
+            <span class="pulse-dot-cyan"></span>
+            <span class="status-lbl">LEDGER GATEWAY SYNCED</span>
+          </div>
+          <div class="sys-meta">127.0.0.1:8000</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONSOLE WORKSPACE -->
+    <div class="main-workspace">
+
+      <!-- TOP HEADER BAR -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button class="hamburger-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="org-switcher">
+            <span class="org-label">Root Organization</span>
+            <div class="org-select-box">
+              <svg class="org-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span class="org-name">Super</span>
+              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </div>
+        <div class="top-bar-right">
+          <a href="#" class="docs-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Documentation</span>
+          </a>
+          <div class="user-profile">
+            <div class="user-badge">A</div>
+            <span class="user-name">admin</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- SYSTEM ALERTS HUB -->
+      <div class="system-alerts-hub">
+        <div id="errorBanner" class="error-toast hidden">
+          <span class="toast-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </span>
+          <span id="errorMsg" class="toast-text"></span>
+          <button id="closeErrorBtn" class="toast-close">✕</button>
+        </div>
+      </div>
+
+      <!-- WORKSPACE SCROLLABLE CONTENT -->
+      <div class="workspace-content">
+        <div class="workspace-header-section">
+          <h1 class="page-title-main" id="pageTitle">TruthLens Verification Engine</h1>
+          <p class="page-subtitle-main">Enterprise console for multi-module deterministic claim analysis and truth-consensus mapping.</p>
+        </div>
+
+        <!-- TAB CONTENT: DASHBOARD -->
+        <section id="tabContentDashboard" class="tab-view fade-in">
+          <div class="workspace-grid">
+            
+            <div class="w-col-left">
+              <!-- Ingestion Terminal Card -->
+              <div class="console-card">
+                <div class="card-lead">
+                  <div class="lead-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+                  </div>
+                  <div>
+                    <h3>Verification Terminal</h3>
+                    <p class="lead-sub">Ingest claim sequences or target query strings for multi-module validation</p>
+                  </div>
+                </div>
+
+                <div class="terminal-modes">
+                  <button class="mode-toggle active" id="modeBtnText">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>Raw String Text</span>
+                  </button>
+                  <button class="mode-toggle" id="modeBtnUrl">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    <span>Verification URL</span>
+                  </button>
+                </div>
+
+                <div class="terminal-body">
+                  <textarea id="newsInput" class="terminal-textarea" placeholder="Enter claims or statement arrays here for verification..."></textarea>
+                  <input id="urlInput" class="terminal-input hidden" type="url" placeholder="https://domain-name.com/target-ledger-item"/>
+                </div>
+
+                <div class="quick-samples">
+                  <span class="sample-title">TEST INJECTORS:</span>
+                  <button class="chip-btn" id="sampleRealBtn">
+                    <span class="dot-indicator-success"></span> Verified Mission
+                  </button>
+                  <button class="chip-btn" id="sampleFakeBtn">
+                    <span class="dot-indicator-danger"></span> Clickbait Speculation
+                  </button>
+                  <button class="chip-btn" id="sampleNeutralBtn">
+                    <span class="dot-indicator-muted"></span> Unanchored Statement
+                  </button>
+                </div>
+
+                <button id="analyzeBtn" class="primary-dispatch-btn">
+                  <span id="btnIcon" class="dispatch-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                  </span>
+                  <span id="btnText">EXECUTE CONSENSUS AUDIT</span>
+                </button>
+              </div>
+
+              <!-- Verdict Banner Card -->
+              <div id="verdictPanel" class="console-card verdict-card-base hidden">
+                <div class="verdict-banner-inner">
+                  <div class="verdict-main-meta">
+                    <span class="verdict-badge-lbl">Consensus Consensus State</span>
+                    <h2 id="verdictText" class="verdict-headline">UNVERIFIED</h2>
+                    <p id="verdictExplanation" class="verdict-summary"></p>
+                  </div>
+
+                  <div class="dial-container">
+                    <svg class="dial-svg">
+                      <circle class="dial-track" cx="45" cy="45" r="36"></circle>
+                      <circle class="dial-fill" id="ringFill" cx="45" cy="45" r="36" stroke-dasharray="226.2" stroke-dashoffset="226.2"></circle>
+                    </svg>
+                    <div class="dial-center-text">
+                      <span id="confidencePct">0%</span>
+                      <label>CONFIDENCE</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="kgBadge" class="kg-verification-badge hidden">
+                  <span class="kg-badge-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </span>
+                  <span id="kgText">Anchored to Ground-Truth Verification Ledger</span>
+                </div>
+              </div>
+
+              <!-- Verification Modules Grid -->
+              <div id="modulesPanel" class="hidden">
+                <div class="panel-section-header">VERIFICATION MODULE CONSENSUS OUTPUTS</div>
+                <div class="agent-matrix" id="modulesGrid"></div>
+              </div>
+            </div>
+
+            <!-- Right Column Stepper -->
+            <div class="w-col-right">
+              <div class="console-card">
+                <div class="card-lead">
+                  <div class="lead-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  </div>
+                  <div>
+                    <h3>Pipeline Orchestrator</h3>
+                    <p class="lead-sub">Real-time trace across verification module processors</p>
+                  </div>
+                </div>
+                <div class="stepper-track" id="stepper"></div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- TAB CONTENT: PIPELINE TOPOLOGY -->
+        <section id="tabContentTopology" class="tab-view hidden fade-in">
+          <div class="console-card">
+            <div class="card-lead">
+              <div class="lead-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <div>
+                <h3>Consensus Engine Architecture Diagram</h3>
+                <p class="lead-sub">Pipeline topography and override resolution flow patterns</p>
+              </div>
+            </div>
+            
+            <div class="architecture-flowchart">
+              <div class="flow-node">UI Ingestion Layer</div>
+              <div class="flow-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              </div>
+              <div class="flow-node highlight">FastAPI Gateway Router</div>
+              <div class="flow-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              </div>
+              
+              <div class="flow-cluster-container">
+                <div class="flow-cluster-label">Parallel Validation Engines</div>
+                <div class="flow-cluster">
+                  <div class="cluster-node">
+                    <span class="node-num">1</span>
+                    <strong>Claim Extraction</strong>
+                    <p>Regex tokenizer matches entity pairs.</p>
+                  </div>
+                  <div class="cluster-node">
+                    <span class="node-num">2</span>
+                    <strong>Linguistic Analyser</strong>
+                    <p>Scores clickbait density & vocabulary filters.</p>
+                  </div>
+                  <div class="cluster-node">
+                    <span class="node-num">3</span>
+                    <strong>Source Credibility</strong>
+                    <p>Audits entity credibility thresholds.</p>
+                  </div>
+                  <div class="cluster-node">
+                    <span class="node-num">4</span>
+                    <strong>Ledger Retrieval</strong>
+                    <p>Scans database ledger query anchors.</p>
+                  </div>
+                  <div class="cluster-node">
+                    <span class="node-num">5</span>
+                    <strong>Model Classification</strong>
+                    <p>Runs logistic classification matrices.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flow-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              </div>
+              <div class="flow-node highlight">Cross Verification Module (Consensus Engine)</div>
+              <div class="flow-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              </div>
+              <div class="flow-node verdict-output">Consensus Final Verdict</div>
+            </div>
+
+            <div class="consensus-rules-card" style="margin-top: 30px;">
+              <h4 style="color:#ffffff; font-size:13px; font-weight:700; margin-bottom:12px;">Consensus Logic Parameters:</h4>
+              <ul class="rules-list" style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:12px; color:var(--text-muted);">
+                <li style="display:flex; align-items:start; gap:10px;"><span style="color:var(--brand-accent); font-weight:700;">Rule 01:</span> If Linguistic Analysis detects sensationalism above threshold, override to FAKE.</li>
+                <li style="display:flex; align-items:start; gap:10px;"><span style="color:var(--brand-accent); font-weight:700;">Rule 02:</span> If Ledger Retrieval fetches positive fact-evidence match, override to REAL.</li>
+                <li style="display:flex; align-items:start; gap:10px;"><span style="color:var(--brand-accent); font-weight:700;">Rule 03:</span> If neither is triggered, consensus defers strictly to Classification Model output.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB CONTENT: AUDIT LEDGER -->
+        <section id="tabContentLedger" class="tab-view hidden fade-in">
+          <div class="console-card">
+            <div class="card-lead">
+              <div class="lead-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div>
+                <h3>Recent Verification Queries</h3>
+                <p class="lead-sub">Local historical ledger registry. Select any transaction row to load back into the verification terminal.</p>
+              </div>
+            </div>
+            
+            <div class="table-container">
+              <table class="enterprise-table">
+                <thead>
+                  <tr>
+                    <th>Claim Statement Input</th>
+                    <th style="width:140px;">Verdict</th>
+                    <th style="width:160px; text-align:right;">Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                  <!-- Javascript rendered rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB CONTENT: SYSTEM ANALYTICS -->
+        <section id="tabContentAnalytics" class="tab-view hidden fade-in">
+          <div class="metrics-dashboard-grid" id="analyticsMetricsContainer">
+            <!-- Rendered by ui.js -->
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
